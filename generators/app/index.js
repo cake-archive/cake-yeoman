@@ -15,7 +15,7 @@ module.exports = myBase.extend({
       type: 'confirm',
       name: 'installConfigFile',
       message: 'Would you like to install a config file?',
-      default: true
+      default: false
     }, {
       type: 'confirm',
       name: 'downloadFromRemote',
