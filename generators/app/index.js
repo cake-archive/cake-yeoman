@@ -5,7 +5,7 @@ var yosay = require('yosay');
 var remote = require('yeoman-remote');
 var path = require('path');
 var myBase = yeoman.Base.extend({
-  copyFile: function (src, dest) {
+  copyFile: function(src, dest) {
     this.fs.copy(
       this.templatePath(src),
       this.destinationPath(dest)
@@ -13,7 +13,7 @@ var myBase = yeoman.Base.extend({
   },
   downloadFromRepo(srcPath, dest) {
     var done = this.async();
-    remote('cake-build', 'resources', function (err, cache) {
+    remote('cake-build', 'resources', function(err, cache) {
       this.fs.copy(
         path.join(cache, srcPath),
         this.destinationPath(dest)
@@ -23,10 +23,10 @@ var myBase = yeoman.Base.extend({
   }
 });
 module.exports = myBase.extend({
-  prompting: function () {
+  prompting: function() {
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the ' + chalk.black.bgYellow.underline.bold('Cake') + ' generator!'
+      'Welcome to the ' + chalk.yellow.underline.bold('Cake') + ' generator!'
     ));
 
     var prompts = [{
@@ -34,30 +34,34 @@ module.exports = myBase.extend({
       name: 'installBootstrapper',
       message: 'Would you like to also install the bootstrappers?',
       default: true
-    },
-      {
-        type: 'confirm',
-        name: 'downloadFromRemote',
-        message: 'Do you want to grab updated bootstrappers from the Internet?',
-        default: false,
-        when: function (hash) {
-          return hash.installBootstrapper;
-        }
-      },
-      {
-        type: 'input',
-        name: 'fileName',
-        message: 'Enter a file name for your new build script',
-        default: 'build.cake'
-      }];
+    }, {
+      type: 'confirm',
+      name: 'installConfigFile',
+      message: 'Would you like to install a config file?',
+      default: true
+    }, {
+      type: 'confirm',
+      name: 'downloadFromRemote',
+      message: 'Do you want to grab updated resources from the Internet?',
+      default: false,
+      when: function(hash) {
+        return hash.installBootstrapper || hash.installConfigFile;
+      }
+    }, {
+      type: 'input',
+      name: 'fileName',
+      message: 'Enter a file name for your new build script',
+      default: 'build.cake',
+      store: true
+    }];
 
-    return this.prompt(prompts).then(function (props) {
+    return this.prompt(prompts).then(function(props) {
       // To access props later use this.props.someAnswer;
       this.props = props;
     }.bind(this));
   },
 
-  writing: function () {
+  writing: function() {
     this.log('Generating Cake build script');
     this.fs.copy(
       this.templatePath('build.cake'),
@@ -74,9 +78,18 @@ module.exports = myBase.extend({
         this.copyFile('build.sh', 'build.sh');
       }
     }
+    if (this.props.installConfigFile) {
+      if (this.props.downloadFromRemote) {
+        this.log('Downloading current cake.config from cake-build/resources repo');
+        this.downloadFromRepo('cake.config', 'cake.config');
+      } else {
+        this.log('Generating cake.config file');
+        this.copyFile('cake.config', 'cake.config');
+      }
+    }
   },
 
-  install: function () {
+  install: function() {
     //this.installDependencies();
   }
 });
