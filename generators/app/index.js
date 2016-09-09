@@ -2,26 +2,9 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
-var remote = require('yeoman-remote');
-var path = require('path');
-var myBase = yeoman.Base.extend({
-  copyFile: function(src, dest) {
-    this.fs.copy(
-      this.templatePath(src),
-      this.destinationPath(dest)
-    );
-  },
-  downloadFromRepo(srcPath, dest) {
-    var done = this.async();
-    remote('cake-build', 'resources', function(err, cache) {
-      this.fs.copy(
-        path.join(cache, srcPath),
-        this.destinationPath(dest)
-      );
-      done();
-    }.bind(this));
-  }
-});
+var myBase = require('./base.js');
+var config = require('../config');
+
 module.exports = myBase.extend({
   prompting: function() {
     // Have Yeoman greet the user.
@@ -68,24 +51,26 @@ module.exports = myBase.extend({
       this.destinationPath(this.props.fileName)
     );
     if (this.props.installBootstrapper) {
-      if (this.props.downloadFromRemote) {
-        this.log('Downloading current bootstrapper scripts from cake-build/resources repo');
-        this.downloadFromRepo('build.ps1', 'build.ps1');
-        this.downloadFromRepo('build.sh', 'build.sh');
-      } else {
-        this.log('Generating bootstrapper scripts');
-        this.copyFile('build.ps1', 'build.ps1');
-        this.copyFile('build.sh', 'build.sh');
-      }
+      this.composeWith('cake:bootstrapper', {
+        options: {
+          preconfig: true,
+          download: this.props.downloadFromRemote
+        }
+      }, {
+        local: require.resolve('../bootstrapper'),
+        link: 'strong'
+      });
     }
     if (this.props.installConfigFile) {
-      if (this.props.downloadFromRemote) {
-        this.log('Downloading current cake.config from cake-build/resources repo');
-        this.downloadFromRepo('cake.config', 'cake.config');
-      } else {
-        this.log('Generating cake.config file');
-        this.copyFile('cake.config', 'cake.config');
-      }
+      this.composeWith('cake:config', {
+        options: {
+          preconfig: true,
+          download: this.props.downloadFromRemote
+        }
+      }, {
+        local: require.resolve('../config'),
+        link: 'strong'
+      });
     }
   },
 
