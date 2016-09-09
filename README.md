@@ -16,6 +16,13 @@ Then generate your new project:
 yo cake
 ```
 
+or to generate only certain scripts:
+
+```bash
+yo cake:config
+yo cake:bootstrapper
+```
+
 ## License
 
 MIT © [Alistair Chapman](https://agchapman.com)
