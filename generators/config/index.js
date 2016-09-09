@@ -1,20 +1,17 @@
 'use strict';
 var common = require('../app/subgenerator.js');
-var chalk = require('chalk');
-var yosay = require('yosay');
 
 module.exports = common.extend({
   prompting: function() {
     // Have Yeoman greet the user.
     if (this.options && this.options.preconfig) {
       return;
-    } else {
-      this.greet();
-      return this.prompt(this.getPrompts('Do you want to use an updated template from the Internet?')).then(function(props) {
-        // To access props later use this.props.someAnswer;
-        this.options.download = props.downloadFromRemote;
-      }.bind(this));
     }
+    this.greet();
+    return this.prompt(this.getPrompts('Do you want to use an updated template from the Internet?')).then(function(props) {
+      // To access props later use this.props.someAnswer;
+      this.options.download = props.downloadFromRemote;
+    }.bind(this));
   },
   writing: function() {
     if (this.options.download) {

@@ -1,0 +1,5 @@
+{
+  "keep_function_indentation": true,
+  "brace_style": "collapse",
+  "indent_size": 2
+}

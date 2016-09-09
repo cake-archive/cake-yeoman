@@ -1,7 +1,5 @@
 var myBase = require('../app/base.js');
 var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
 
 module.exports = myBase.extend({
   constructor: function() {
@@ -15,11 +13,11 @@ module.exports = myBase.extend({
   },
   getPrompts(message) {
     return [{
-        type: 'confirm',
-        name: 'downloadFromRemote',
-        message: message,
-        default: false,
-        when: !this.options.download
-      }];
+      type: 'confirm',
+      name: 'downloadFromRemote',
+      message: message,
+      default: false,
+      when: !this.options.download
+    }];
   }
 });

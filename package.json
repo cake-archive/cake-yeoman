@@ -42,6 +42,11 @@
     "extends": "xo-space",
     "env": {
       "mocha": true
+    },
+    "rules": {
+      "linebreak-style": "off",
+      "space-before-function-paren": "off",
+      "indent": "warn"
     }
   },
   "repository": "agc93/generator-cake",

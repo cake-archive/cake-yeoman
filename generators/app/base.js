@@ -15,6 +15,9 @@ module.exports = yeoman.Base.extend({
   downloadFromRepo(srcPath, dest) {
     var done = this.async();
     remote('cake-build', 'resources', function(err, cache) {
+      if (err) {
+        this.log(err);
+      }
       this.fs.copy(
         path.join(cache, srcPath),
         this.destinationPath(dest)

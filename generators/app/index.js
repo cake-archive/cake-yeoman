@@ -1,16 +1,10 @@
 'use strict';
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
 var myBase = require('./base.js');
-var config = require('../config');
 
 module.exports = myBase.extend({
   prompting: function() {
     // Have Yeoman greet the user.
-    this.log(yosay(
-      'Welcome to the ' + chalk.yellow.underline.bold('Cake') + ' generator!'
-    ));
+    this.greet();
 
     var prompts = [{
       type: 'confirm',
@@ -72,9 +66,5 @@ module.exports = myBase.extend({
         link: 'strong'
       });
     }
-  },
-
-  install: function() {
-    //this.installDependencies();
   }
 });
