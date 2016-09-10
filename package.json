@@ -8,6 +8,8 @@
     "email": "alistair@agchapman.com",
     "url": "https://agchapman.com"
   },
+  "preferGlobal": true,
+  "readme": "README.md",
   "files": [
     "generators"
   ],

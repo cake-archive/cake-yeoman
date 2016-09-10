@@ -1,4 +1,5 @@
 # generator-cake [![NPM version][npm-image]][npm-url] [![Dependency Status][daviddm-image]][daviddm-url]
+
 > Yeoman generator for Cake build scripts
 
 ## Installation
@@ -16,12 +17,24 @@ Then generate your new project:
 yo cake
 ```
 
+![Running 'yo cake'](art/yo-cake.gif)
+
 or to generate only certain scripts:
 
 ```bash
 yo cake:config
 yo cake:bootstrapper
 ```
+
+### Frosting
+
+You can use our (experimental) generator for [Frosting](https://github.com/cake-build/frosting) to quickly setup a new project:
+
+```bash
+yo cake:frosting
+```
+
+![Running 'yo cake:frosting'](art/yo-frosting.gif)
 
 ## License
 

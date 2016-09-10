@@ -52,6 +52,20 @@ const shared = {
     notCreated() {
       assert.noFile(['build.cake']);
     }
+  },
+  frosting: {
+    programCreated() {
+      assert.file(['Program.cs']);
+    },
+    projectJsonCreated() {
+      assert.file(['project.json']);
+    },
+    nugetConfigCreated() {
+      assert.file(['nuget.config']);
+    },
+    defaultTaskCreated() {
+      assert.file(['DefaultTask.cs']);
+    }
   }
 };
 module.exports = shared;
