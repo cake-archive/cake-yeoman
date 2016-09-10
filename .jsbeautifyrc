@@ -1,5 +1,6 @@
 {
   "keep_function_indentation": true,
   "brace_style": "collapse",
-  "indent_size": 2
+  "indent_size": 2,
+  "end_with_newline": true
 }

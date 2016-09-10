@@ -12,6 +12,13 @@ module.exports = yeoman.Base.extend({
       this.destinationPath(dest)
     );
   },
+  templateFile(src, dest, data) {
+    this.fs.copyTpl(
+      this.templatePath(src),
+      this.destinationPath(dest),
+      data
+    );
+  },
   downloadFromRepo(srcPath, dest) {
     var done = this.async();
     remote('cake-build', 'resources', function(err, cache) {
@@ -26,9 +33,10 @@ module.exports = yeoman.Base.extend({
       }
     }.bind(this));
   },
-  greet() {
+  greet(message) {
+    var msg = message || 'Cake';
     this.log(yosay(
-      'Welcome to the ' + chalk.yellow.underline.bold('Cake') + ' generator!'
+      'Welcome to the ' + chalk.yellow.underline.bold(msg) + ' generator!'
     ));
   }
 });
