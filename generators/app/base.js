@@ -17,17 +17,18 @@ module.exports = yeoman.Base.extend({
     remote('cake-build', 'resources', function(err, cache) {
       if (err) {
         this.log(err);
+      } else {
+        this.fs.copy(
+          path.join(cache, srcPath),
+          this.destinationPath(dest)
+        );
+        done();
       }
-      this.fs.copy(
-        path.join(cache, srcPath),
-        this.destinationPath(dest)
-      );
-      done();
     }.bind(this));
   },
   greet() {
     this.log(yosay(
-        'Welcome to the ' + chalk.yellow.underline.bold('Cake') + ' generator!'
-      ));
+      'Welcome to the ' + chalk.yellow.underline.bold('Cake') + ' generator!'
+    ));
   }
 });

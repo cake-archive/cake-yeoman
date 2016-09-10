@@ -42,6 +42,16 @@ const shared = {
       assert.fileContent('build.ps1', 'generator-cake');
       assert.fileContent('build.sh', 'generator-cake');
     }
+  },
+  script: {
+    created() {
+      assert.file([
+        'build.cake'
+      ]);
+    },
+    notCreated() {
+      assert.noFile(['build.cake']);
+    }
   }
 };
 module.exports = shared;
