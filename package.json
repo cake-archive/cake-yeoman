@@ -1,6 +1,6 @@
 {
   "name": "generator-cake",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Yeoman generator for Cake build scripts",
   "homepage": "https://github.com/agc93/generator-cake/",
   "author": {
@@ -9,7 +9,6 @@
     "url": "https://agchapman.com"
   },
   "preferGlobal": true,
-  "readme": "README.md",
   "files": [
     "generators"
   ],
