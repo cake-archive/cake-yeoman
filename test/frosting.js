@@ -5,7 +5,7 @@ var shared = require('./common.js');
 var assert = require('yeoman-assert');
 
 describe('generator-cake:frosting', function() {
-  this.timeout(15000);
+  this.timeout(30000);
   describe('when run with defaults', function() {
     before(function() {
       return helpers.run(path.join(__dirname, '../generators/frosting'))
