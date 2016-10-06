@@ -1,21 +1,42 @@
 'use strict';
+var objectAssign = require('object-assign');
+var yeoman = require('yeoman-generator');
 var myBase = require('./base.js');
 
 module.exports = myBase.extend({
-  prompting: function() {
-    // Have Yeoman greet the user.
-    this.greet();
+  constructor: function () {
+    yeoman.Base.apply(this, arguments);
 
+    this.option('installBootstrapper', {
+      required: false
+    });
+
+    this.option('installConfigFile', {
+      required: false
+    });
+
+    this.option('downloadFromRemote', {
+      required: false
+    });
+
+    this.option('fileName', {
+      required: false
+    });
+  },
+
+  prompting: function() {
     var prompts = [{
       type: 'confirm',
       name: 'installBootstrapper',
       message: 'Would you like to also install the bootstrappers?',
-      default: true
+      default: true,
+      when: this.options.installBootstrapper === null || this.options.installBootstrapper === undefined
     }, {
       type: 'confirm',
       name: 'installConfigFile',
       message: 'Would you like to install a config file?',
-      default: false
+      default: false,
+      when: this.options.installConfigFile === null || this.options.installConfigFile === undefined
     }, {
       type: 'confirm',
       name: 'downloadFromRemote',
@@ -29,12 +50,17 @@ module.exports = myBase.extend({
       name: 'fileName',
       message: 'Enter a file name for your new build script',
       default: 'build.cake',
+      when: this.options.fileName === null || this.options.fileName === undefined,
       store: true
     }];
 
     return this.prompt(prompts).then(function(props) {
       // To access props later use this.props.someAnswer;
-      this.props = props;
+      this.props = objectAssign({
+        installBootstrapper: this.options.installBootstrapper || props.installBootstrapper,
+        installConfigFile: this.options.installConfigFile || props.installConfigFile,
+        downloadFromRemote: this.options.downloadFromRemote || props.downloadFromRemote,
+        fileName: this.options.fileName || props.fileName});
     }.bind(this));
   },
 
