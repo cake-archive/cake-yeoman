@@ -25,6 +25,10 @@ module.exports = myBase.extend({
   },
 
   prompting: function() {
+    if (this.options.installBootstrapper === undefined && this.options.installConfigFile === undefined &&
+        this.options.downloadFromRemote === undefined && this.options.fileName === undefined) {
+      this.greet();
+    }
     var prompts = [{
       type: 'confirm',
       name: 'installBootstrapper',
