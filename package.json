@@ -37,7 +37,8 @@
     "gulp-istanbul": "^1.0.0",
     "gulp-mocha": "^2.0.0",
     "gulp-plumber": "^1.0.0",
-    "gulp-nsp": "^2.1.0"
+    "gulp-nsp": "^2.1.0",
+    "gulp-coveralls": "^0.1.4"
   },
   "eslintConfig": {
     "extends": "xo-space",
@@ -52,7 +53,6 @@
   },
   "repository": "agc93/generator-cake",
   "scripts": {
-    "prepublish": "gulp prepublish",
     "test": "gulp"
   },
   "license": "MIT",
