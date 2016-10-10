@@ -1,15 +1,7 @@
-language: node_js
+language: c#
 node_js:
   - v6
   - v5
   - v4
   - '0.12'
   - '0.10'
-matrix:
-  include:
-  - os: linux
-    dist: trusty # Ubuntu 14.04
-    dotnet: 1.0.0-preview2-003121
-    mono: none
-    env: DOTNETCORE=1
-    sudo: required
