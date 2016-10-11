@@ -53,6 +53,7 @@
   },
   "repository": "agc93/generator-cake",
   "scripts": {
+    "prepublish": "gulp prepublish",
     "test": "gulp"
   },
   "license": "MIT",
