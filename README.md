@@ -1,6 +1,13 @@
-# generator-cake [![NPM version][npm-image]][npm-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# generator-cake  
 
 > Yeoman generator for Cake build scripts
+
+[![NPM version][npm-image]][npm-url]
+[![Dependency Status][daviddm-image]][daviddm-url]
+[![Build Status](https://travis-ci.org/agc93/generator-cake.svg?branch=master)](https://travis-ci.org/agc93/generator-cake)
+[![Coverage Status](https://coveralls.io/repos/agc93/generator-cake/badge.png)](https://coveralls.io/github/agc93/generator-cake)
+
+---
 
 ## Installation
 
