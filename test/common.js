@@ -14,7 +14,7 @@ const shared = {
       ]);
     },
     areDownloaded() {
-      assert.fileContent('cake.config', 'https://github.com/cake-build/resource');
+      assert.fileContent('cake.config', 'https://github.com/cake-build/resources');
     },
     areLocal() {
       assert.fileContent('cake.config', 'generator-cake');
@@ -35,8 +35,8 @@ const shared = {
       ]);
     },
     areDownloaded() {
-      assert.fileContent('build.ps1', 'https://github.com/cake-build/resource');
-      assert.fileContent('build.sh', 'https://github.com/cake-build/resource');
+      assert.fileContent('build.ps1', 'https://github.com/cake-build/resources');
+      assert.fileContent('build.sh', 'https://github.com/cake-build/resources');
     },
     areLocal() {
       assert.fileContent('build.ps1', 'generator-cake');
