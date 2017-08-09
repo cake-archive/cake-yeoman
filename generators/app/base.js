@@ -1,9 +1,8 @@
 'use strict';
 const Generator = require('yeoman-generator');
-var remote = require('yeoman-remote');
-var path = require('path');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var got = require('got');
 
 module.exports = class extends Generator {
   constructor(args, options) {
@@ -23,19 +22,17 @@ module.exports = class extends Generator {
       data
     );
   }
-  downloadFromRepo(srcPath, dest) {
+  downloadFromRepo(srcPath, dest, branch) {
     var done = this.async();
-    remote('cake-build', 'resources', 'master', function(err, cache) {
-      if (err) {
-        this.log(err);
-      } else {
-        this.fs.copy(
-          path.join(cache, srcPath),
-          this.destinationPath(dest)
-        );
+    branch = branch || 'develop';
+    got(`https://raw.githubusercontent.com/cake-build/resources/${branch}/${srcPath}`)
+      .then(response => {
+        this.fs.write(this.destinationPath(dest), response.body);
         done();
-      }
-    }.bind(this), true);
+      })
+      .catch(err => {
+        this.log(err);
+      });
   }
   greet(message) {
     var msg = message || 'Cake';

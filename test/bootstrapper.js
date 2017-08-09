@@ -21,8 +21,7 @@ describe('generator-cake:bootstrapper', function() {
         .withOptions({})
         .withPrompts({
           downloadFromRemote: true
-        })
-        .toPromise();
+        });
     });
     it('creates the bootstrappers', shared.bootstrappers.created);
     it('uses online templates', shared.bootstrappers.areDownloaded);

@@ -23,7 +23,8 @@
     "chalk": "^2.1.0",
     "yeoman-generator": "^1.1.1",
     "yeoman-remote": "^1.0.1",
-    "yosay": "^2.0.1"
+    "yosay": "^2.0.1",
+    "got": "^7.1.0"
   },
   "devDependencies": {
     "eslint": "^4.4.1",
