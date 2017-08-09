@@ -22,7 +22,7 @@ const shared = {
   },
   bootstrappers: {
     created() {
-      this.timeout(5000);
+      this.timeout(10000);
       assert.file([
         'build.ps1',
         'build.sh'

@@ -15,8 +15,10 @@ describe('generator-cake:bootstrapper', function() {
     it('and uses local templates', shared.bootstrappers.areLocal);
   });
   describe('when enabling download', function() {
+    this.timeout(5000);
     before(function() {
       return helpers.run(path.join(__dirname, '../generators/bootstrapper'))
+        .withOptions({})
         .withPrompts({
           downloadFromRemote: true
         })
