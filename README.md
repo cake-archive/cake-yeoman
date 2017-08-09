@@ -4,8 +4,8 @@
 
 [![NPM version][npm-image]][npm-url]
 [![Dependency Status][daviddm-image]][daviddm-url]
-[![Build Status](https://travis-ci.org/agc93/generator-cake.svg?branch=master)](https://travis-ci.org/agc93/generator-cake)
-[![Coverage Status](https://coveralls.io/repos/agc93/generator-cake/badge.png)](https://coveralls.io/github/agc93/generator-cake)
+[![Build Status][build-badge]][build-status]
+[![Coverage Status][coverage-badge]][coverage-url]
 
 ---
 
@@ -50,5 +50,9 @@ MIT © [Alistair Chapman](https://agchapman.com)
 
 [npm-image]: https://badge.fury.io/js/generator-cake.svg
 [npm-url]: https://npmjs.org/package/generator-cake
-[daviddm-image]: https://david-dm.org/agc93/generator-cake.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/agc93/generator-cake
+[daviddm-image]: https://david-dm.org/cake-build/cake-yeoman.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/cake-build/cake-yeoman
+[build-badge]: https://travis-ci.org/cake-build/cake-yeoman.svg?branch=master
+[build-status]: https://travis-ci.org/cake-build/cake-yeoman
+[coverage-badge]: https://coveralls.io/repos/cake-build/cake-yeoman/badge.png
+[coverage-url]: https://coveralls.io/github/cake-build/cake-yeoman
