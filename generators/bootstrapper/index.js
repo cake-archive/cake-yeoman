@@ -1,8 +1,8 @@
 'use strict';
 var common = require('../app/subgenerator.js');
 
-module.exports = common.extend({
-  prompting: function() {
+module.exports = class extends common {
+  prompting() {
     // Have Yeoman greet the user.
     if (this.options && this.options.preconfig) {
       return;
@@ -12,8 +12,8 @@ module.exports = common.extend({
       // To access props later use this.props.someAnswer;
       this.options.download = props.downloadFromRemote;
     }.bind(this));
-  },
-  writing: function() {
+  }
+  writing() {
     if (this.options.download) {
       this.log('Downloading current bootstrapper scripts from cake-build/resources repo');
       this.downloadFromRepo('build.ps1', 'build.ps1');
@@ -24,4 +24,4 @@ module.exports = common.extend({
       this.copyFile('build.sh', 'build.sh');
     }
   }
-});
+};

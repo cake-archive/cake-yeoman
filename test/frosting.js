@@ -11,7 +11,7 @@ describe('generator-cake:frosting', function() {
       return helpers.run(path.join(__dirname, '../generators/frosting'))
         .toPromise();
     });
-    it('creates project.json', shared.frosting.projectJsonCreated);
+    it('creates Build.csproj', shared.frosting.csprojCreated);
     it('creates NuGet config', shared.frosting.nugetConfigCreated);
     it('creates entry point', shared.frosting.programCreated);
     it('creates default task', shared.frosting.defaultTaskCreated);

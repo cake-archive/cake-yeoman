@@ -1,11 +1,10 @@
 'use strict';
 var objectAssign = require('object-assign');
-var yeoman = require('yeoman-generator');
 var myBase = require('./base.js');
 
-module.exports = myBase.extend({
-  constructor: function () {
-    yeoman.Base.apply(this, arguments);
+module.exports = class extends myBase {
+  constructor(args, options) {
+    super(args, options);
 
     this.option('installBootstrapper', {
       required: false
@@ -22,11 +21,11 @@ module.exports = myBase.extend({
     this.option('fileName', {
       required: false
     });
-  },
+  }
 
-  prompting: function() {
+  prompting() {
     if (this.options.installBootstrapper === undefined && this.options.installConfigFile === undefined &&
-        this.options.downloadFromRemote === undefined && this.options.fileName === undefined) {
+      this.options.downloadFromRemote === undefined && this.options.fileName === undefined) {
       this.greet();
     }
     var prompts = [{
@@ -46,7 +45,7 @@ module.exports = myBase.extend({
       name: 'downloadFromRemote',
       message: 'Do you want to grab updated resources from the Internet?',
       default: false,
-      when: function(hash) {
+      when: function (hash) {
         return hash.installBootstrapper || hash.installConfigFile;
       }
     }, {
@@ -58,43 +57,34 @@ module.exports = myBase.extend({
       store: true
     }];
 
-    return this.prompt(prompts).then(function(props) {
+    return this.prompt(prompts).then(function (props) {
       // To access props later use this.props.someAnswer;
       this.props = objectAssign({
         installBootstrapper: this.options.installBootstrapper || props.installBootstrapper,
         installConfigFile: this.options.installConfigFile || props.installConfigFile,
         downloadFromRemote: this.options.downloadFromRemote || props.downloadFromRemote,
-        fileName: this.options.fileName || props.fileName});
+        fileName: this.options.fileName || props.fileName
+      });
     }.bind(this));
-  },
+  }
 
-  writing: function() {
+  writing() {
     this.log('Generating Cake build script');
     this.fs.copy(
       this.templatePath('build.cake'),
       this.destinationPath(this.props.fileName)
     );
     if (this.props.installBootstrapper) {
-      this.composeWith('cake:bootstrapper', {
-        options: {
-          preconfig: true,
-          download: this.props.downloadFromRemote
-        }
-      }, {
-        local: require.resolve('../bootstrapper'),
-        link: 'strong'
+      this.composeWith(require.resolve('../bootstrapper'), {
+        preconfig: true,
+        download: this.props.downloadFromRemote
       });
     }
     if (this.props.installConfigFile) {
-      this.composeWith('cake:config', {
-        options: {
-          preconfig: true,
-          download: this.props.downloadFromRemote
-        }
-      }, {
-        local: require.resolve('../config'),
-        link: 'strong'
+      this.composeWith(require.resolve('../config'), {
+        preconfig: true,
+        download: this.props.downloadFromRemote
       });
     }
   }
-});
+};

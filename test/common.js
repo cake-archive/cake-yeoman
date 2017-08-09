@@ -57,8 +57,8 @@ const shared = {
     programCreated() {
       assert.file(['Program.cs']);
     },
-    projectJsonCreated() {
-      assert.file(['project.json']);
+    csprojCreated() {
+      assert.file(['Build.csproj']);
     },
     nugetConfigCreated() {
       assert.file(['nuget.config']);
