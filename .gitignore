@@ -1,3 +1,7 @@
 node_modules
 coverage
 generator-cake*.tgz
+.templates/**
+tools/**
+!tools/packages.config
+!tools/Modules/packages.config
