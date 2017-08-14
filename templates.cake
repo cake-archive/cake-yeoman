@@ -19,12 +19,14 @@ var model = new {
           new {
             name = "Default",
             skipRun = true,
-            dependencies = new[] { "Build" }
+            runBody = $"// If you don't inherit from FrostingTask<MySettings>{Environment.NewLine}    // the standard ICakeContext will be provided.{Environment.NewLine}",
+            dependencies = new[] { "<%= taskName %>" }
           },
           new {
             name = "<%= taskName %>",
             skipRun = false,
-            dependencies = new string[0]  // this is needed for anonymous types to not bork out. Templates don't *need* this property
+            runBody = "", // this is needed for anonymous types to not bork out. Templates don't *need* this property
+            dependencies = new string[0] // as above
           }
         }
       }
@@ -96,11 +98,14 @@ Task("Render-Frosting-Templates")
   var program = RenderTemplateFromFile("./.templates/template/frosting/Program.cs.hbs", model);
   WriteTemplateToFile(program, "./generators/frosting/templates/program.cs");
   Information("Rendering the Task templates");
+  var tasksTemplate = RenderTemplateFromFile("./.templates/template/frosting/Tasks/Tasks.cs.hbs", model);
+  WriteTemplateToFile(tasksTemplate, "./generators/frosting/templates/task.cs");
+  /* The loop below will generate single-file task templates only. See Pantry README for more info.
   foreach (var task in model.cake.frosting.tasks) {
     Information("Rendering the template for Task '{0}'", task.name ?? "unknown");
     var taskTemplate = RenderTemplateFromFile("./.templates/template/frosting/Tasks/Task.cs.hbs", task);
     WriteTemplateToFile(taskTemplate, "./generators/frosting/templates/" + (task.name.Contains("<%") ? "task.cs" : (task.name + ".cs")));
-  }
+  } */
 });
 
 Task("Build-Templates")

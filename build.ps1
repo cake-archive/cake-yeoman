@@ -214,7 +214,7 @@ if ($Target) { $cakeArguments += "-target=$Target" }
 if ($Configuration) { $cakeArguments += "-configuration=$Configuration" }
 if ($Verbosity) { $cakeArguments += "-verbosity=$Verbosity" }
 if ($ShowDescription) { $cakeArguments += "-showdescription" }
-if ($BuildTemplates) { $cakeArguments = @("templates.cake", "-target=Build-Templates")}
+if ($BuildTemplates) { $cakeArguments = @("templates.cake", "-target=Build-Templates", "-experimental")}
 if ($DryRun) { $cakeArguments += "-dryrun" }
 if ($Experimental) { $cakeArguments += "-experimental" }
 if ($Mono) { $cakeArguments += "-mono" }
