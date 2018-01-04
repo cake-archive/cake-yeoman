@@ -211,10 +211,10 @@ if (!(Test-Path $CAKE_EXE)) {
 # Build Cake arguments
 $cakeArguments = @("$Script");
 if ($Target) { $cakeArguments += "-target=$Target" }
+if ($BuildTemplates) { $cakeArguments = @("templates.cake", "-target=Build-Templates", "--nuget_useinprocessclient=true")}
 if ($Configuration) { $cakeArguments += "-configuration=$Configuration" }
 if ($Verbosity) { $cakeArguments += "-verbosity=$Verbosity" }
 if ($ShowDescription) { $cakeArguments += "-showdescription" }
-if ($BuildTemplates) { $cakeArguments = @("templates.cake", "-target=Build-Templates", "-experimental")}
 if ($DryRun) { $cakeArguments += "-dryrun" }
 if ($Experimental) { $cakeArguments += "-experimental" }
 if ($Mono) { $cakeArguments += "-mono" }

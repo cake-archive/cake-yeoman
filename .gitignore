@@ -1,7 +1,21 @@
 node_modules
 coverage
 generator-cake*.tgz
-.templates/**
+.templates
 tools/**
 !tools/packages.config
 !tools/Modules/packages.config
+
+
+# since VS Code generates build assets silently now
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
