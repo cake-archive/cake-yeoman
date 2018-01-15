@@ -70,6 +70,13 @@ Task("Clone")
 Task("Render-Script-Template")
 .IsDependentOn("Clone")
 .Does(() => {
+  var template = RenderTemplateFromFile("./.templates/template/build.cake.hbs", model);
+  WriteTemplateToFile(template, "./generators/app/templates/build.cake");
+});
+
+Task("Render-Config-Template")
+.IsDependentOn("Clone")
+.Does(() => {
   var template = RenderTemplateFromFile("./.templates/template/cake.config.hbs", model);
   WriteTemplateToFile(template, "./generators/config/templates/cake.config");
 });
@@ -108,6 +115,7 @@ Task("Render-Frosting-Templates")
 
 Task("Build-Templates")
 .IsDependentOn("Render-Script-Template")
+.IsDependentOn("Render-Config-Template")
 .IsDependentOn("Render-Bootstrapper-Templates")
 .IsDependentOn("Render-Frosting-Templates");
 
