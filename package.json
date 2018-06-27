@@ -1,6 +1,6 @@
 {
   "name": "generator-cake",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Yeoman generator for Cake build scripts",
   "homepage": "https://github.com/cake-build/cake-yeoman/",
   "author": {
@@ -20,29 +20,28 @@
     "csharp"
   ],
   "dependencies": {
-    "chalk": "^2.1.0",
-    "yeoman-generator": "^1.1.1",
-    "yeoman-remote": "^1.0.1",
-    "yosay": "^2.0.1",
-    "got": "^7.1.0"
+    "chalk": "^2.4.1",
+    "yeoman-generator": "^2.0.5",
+    "yosay": "^2.0.2",
+    "got": "^8.3.1"
   },
   "devDependencies": {
-    "eslint": "^4.4.1",
-    "eslint-config-xo-space": "^0.16.0",
+    "eslint": "^5.0.1",
+    "eslint-config-xo-space": "^0.19.0",
     "gulp": "^3.9.1",
     "gulp-coveralls": "^0.1.4",
-    "gulp-eslint": "^4.0.0",
-    "gulp-exclude-gitignore": "^1.1.1",
-    "gulp-istanbul": "^1.1.2",
-    "gulp-line-ending-corrector": "^1.0.1",
-    "gulp-mocha": "^3.0.1",
-    "gulp-nsp": "^2.4.2",
-    "gulp-plumber": "^1.1.0",
-    "yeoman-assert": "^3.0.0",
-    "yeoman-test": "^1.7.0"
+    "gulp-eslint": "^4.0.2",
+    "gulp-exclude-gitignore": "^1.2.0",
+    "gulp-istanbul": "^1.1.3",
+    "gulp-line-ending-corrector": "^1.0.2",
+    "gulp-mocha": "^6.0.0",
+    "gulp-nsp": "^3.0.1",
+    "gulp-plumber": "^1.2.0",
+    "yeoman-assert": "^3.1.1",
+    "yeoman-test": "^1.7.2"
   },
   "eslintConfig": {
-    "extends": "xo-space",
+    "extends": "eslint:recommended",
     "env": {
       "mocha": true,
       "node": true
@@ -50,7 +49,10 @@
     "rules": {
       "linebreak-style": "off",
       "space-before-function-paren": "off",
-      "indent": "warn"
+      "indent": ["warn", 2]
+    },
+    "parserOptions": {
+      "ecmaVersion": 6
     }
   },
   "repository": "cake-build/cake-yeoman",
